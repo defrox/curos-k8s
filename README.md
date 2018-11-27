@@ -15,11 +15,3 @@ https://www.youtube.com/watch?v=R-3dfURb2hA
 https://www.youtube.com/watch?v=R-3dfURb2hA
 
 
-## Ejercicio 1 - Comprobación de kubectl y minikube
-
-Para comprobar si tenemos instalado kubectl, ejecutar lo siguiente para identificar que versión tenemos instalada:
-
-```
-kubectl version
-```
-
