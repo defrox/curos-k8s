@@ -1,5 +1,7 @@
 # Instalación de requisitos
 
+**Actualización:** No es necesario realizar todos estos pasos, podemos usar un cluster en la nube para realizar los ejercicios a través de este enlace https://goo.gl/GFpLrE
+
 ## Importación de la VM
 Para usar la VM, hay que importar el archivo descargado (no hay que crear ni abrir, usar la función de importar y seleccionar el archivo descargado de drive)
 
