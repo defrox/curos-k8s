@@ -1,10 +1,22 @@
 # Instalación de requisitos
 
-## Contraseña de usuario y root de la VM:
+## Contraseña de usuario y root de la VM
 `osboxes.org`
 
-## Configuración del teclado en Español:
+## Configuración del teclado en Español
 `sudo setxkbmap -layout es`
+
+## Configurar proxy en la VM
+Para establecer la configuración del proxy de la red orange en la VM, hay que editar el archivo **/etc/environment** y añadir al final
+```
+export {HTTP,HTTPS}_PROXY=http://10.113.55.38:8080/
+export {http,https}_proxy=http://10.113.55.38:8080/
+export {NO_PROXY,no_proxy}=localhost,127.0.0.1,::1
+
+export {HTTP,HTTPS}_PROXY=http://proxydsi:8080/
+export {http,https}_proxy=http://proxydsi:8080/
+export {NO_PROXY,no_proxy}=localhost,127.0.0.1,::1
+```
 
 ## Instalar Virtual Box (Linux)
 Para instalar VirtualBox en linux, ejecutar:
