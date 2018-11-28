@@ -92,6 +92,10 @@ Comprobamos los eventos del clúster:
 ```
 kubectl get events
 ```
+Comprobamos los nodos del clúster:
+```
+kubectl get nodes -o wide
+```
 Comprobamos la configuración de 'kubectl':
 ```
 kubectl config view
