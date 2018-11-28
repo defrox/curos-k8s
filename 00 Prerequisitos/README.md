@@ -4,11 +4,11 @@
 Para usar la VM, hay que importar el archivo descargado (no hay que crear ni abrir, usar la función de importar y seleccionar el archivo descargado de drive)
 
 ## Configuración de rendimiento de la VM
-Para que la VM tenga recursos suficientes, es recomendable ajustar los parámetros de RAM,CPU y memoria de vídeo. Estos valores se pueden ajustar en la configuracion de VirtualBox
+Para que la VM tenga recursos suficientes, es recomendable ajustar los parámetros de RAM,CPU y memoria de vídeo. Estos valores se pueden ajustar en la configuracion de VirtualBox. Valores aconsejados:
 
 - RAM: 80% de la disponible (hasta la linea roja)
 - CPU: 50% de los disponibles (idem)
-- Memoria de vídeo: 
+- Memoria de vídeo: 80mb
 
 ## Contraseña de usuario y root de la VM
 `osboxes.org`
