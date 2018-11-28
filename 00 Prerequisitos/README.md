@@ -1,5 +1,11 @@
 # Instalación de requisitos
 
+## Contraseña de usuario y root de la VM:
+`osboxes.org`
+
+## Configuración del teclado en Español:
+`sudo setxkbmap -layout es`
+
 ## Instalar Virtual Box (Linux)
 Para instalar VirtualBox en linux, ejecutar:
 
