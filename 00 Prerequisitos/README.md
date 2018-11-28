@@ -42,7 +42,7 @@ si ejecutamos `docker pull hello-world` se debería descargar correctamente.
 
 Para que minikube se quede configurado con el proxy, debemos arrancar por lo menos una vez minikube con la siguiente configuracion:
 ```
- sudo minikube start \
+sudo minikube start --vm-driver=none \
      --docker-env HTTP_PROXY=http://10.38.32.9:10808/ \
      --docker-env HTTPS_PROXY=http://10.38.32.9:10808/ \
      --docker-env NO_PROXY=index.docker.io,\
