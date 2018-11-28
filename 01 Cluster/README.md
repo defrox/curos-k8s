@@ -1,6 +1,6 @@
 # Ejercicio 1
 
-Si no hemos instalado minikube en local, podemos pasar al [punto 4](#)
+Si no hemos instalado minikube en local, podemos pasar al [punto 4](#4-lanzar-minikube-desde-la-nube)
 
 ### 1. Comprobación de kubectl y minikube
 
@@ -91,6 +91,10 @@ hello-node-5f76cf6ccf-br9b5   1/1       Running   0          1m
 Comprobamos los eventos del clúster:
 ```
 kubectl get events
+```
+Comprobamos los nodos del clúster:
+```
+kubectl get nodes -o wide
 ```
 Comprobamos la configuración de 'kubectl':
 ```
