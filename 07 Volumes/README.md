@@ -2,6 +2,8 @@
 
 En este ejercicio crearemos varios pods y veremos sus particularidades.
 
+**Solo para entorno cloud (terminal web):** recargar la ventana del terminal para evitar que expire.
+
 ### 1. Crear un pod sencillo
 
 Con el editor de texto o directamente desde el terminal, crear un archivo `pod.yaml` con el siguiente contenido:

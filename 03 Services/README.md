@@ -2,6 +2,8 @@
 
 En este ejercicio crearemos varios tipos de servicios y veremos sus particularidades.
 
+**Solo para entorno cloud (terminal web):** recargar la ventana del terminal para evitar que expire.
+
 ### 1. Crear un servicio del tipo ClusterIP
 
 En este caso necesitaremos crear un pod además del servicio. Con el editor de texto o directamente desde el terminal, crear un archivo `pod.yaml` con el siguiente contenido:
