@@ -2,6 +2,8 @@
 
 En este ejercicio crearemos varios replicasets y veremos sus particularidades.
 
+**Solo para entorno cloud (terminal web):** recargar la ventana del terminal para evitar que expire.
+
 ### 1. Crear un replicaset
 
 Con el editor de texto o directamente desde el terminal, crear un archivo `replicaset.yaml` con el siguiente contenido:

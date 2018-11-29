@@ -2,61 +2,127 @@
 
 En este ejercicio crearemos varios pods y veremos sus particularidades.
 
-### 1. Crear un pod sencillo
+**Solo para entorno cloud (terminal web):** recargar la ventana del terminal para evitar que expire.
 
-Con el editor de texto o directamente desde el terminal, crear un archivo `pod.yaml` con el siguiente contenido:
+### 1. Crear un StatefulSet
+
+Con el editor de texto o directamente desde el terminal, crear un archivo `nginx.yaml` con el siguiente contenido:
 ```
 apiVersion: v1
-kind: Pod
+kind: Service
 metadata:
-  name: myapp-pod
+  name: nginx
   labels:
-    app: myapp
+    app: nginx
 spec:
-  containers:
-    - name: myapp-container
-      image: busybox
-      command: ['sh', '-c', 'echo All you need is Love! && sleep 3600']
+  ports:
+  - port: 80
+    name: web
+  clusterIP: None
+  selector:
+    app: nginx
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: web
+spec:
+  selector:
+    matchLabels:
+      app: nginx # debe coincidir con .spec.template.metadata.labels
+  serviceName: "nginx"
+  replicas: 3 # por defecto es 1
+  template:
+    metadata:
+      labels:
+        app: nginx # debe coincidir con .spec.selector.matchLabels
+    spec:
+      terminationGracePeriodSeconds: 60
+      containers:
+      - name: nginx
+        image: k8s.gcr.io/nginx-slim:0.8
+        ports:
+        - containerPort: 80
+          name: web
+        volumeMounts:
+        - name: www
+          mountPath: /usr/share/nginx/html/test
+        readinessProbe:
+          httpGet:
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+      volumes:
+      - name: www
+        emptyDir: {}
 ```
-Ahora desplegamos el pod que acabamos de crear:
-
+Y desplegamos lo que acabamos de crear:
 ```
-kubectl create -f pod.yaml
+kubectl create -f nginx.yaml
+```
+Como podemos comprobar en este caso hemos declarado dos objetos en un solo archivo, lo que nos permite desplegarlos juntos.
+
+Ahora comprobemos como se despliegan secuencialmente:
+```
+watch kubectl get pods
+```
+Para entrar al terminal de un pod:
+```
+kubectl exec -it web-0 bash
+```
+Una vez dentro creamos un archivo `web-0.txt` y salimos del pod:
+```
+touch /usr/share/nginx/html/test/web-0.txt && exit
+```
+entramos en el pod y comprobamos si existe el archivo `web-0.txt`
+```
+kubectl exec -it web-0 -- ls /usr/share/nginx/html/test
+```
+y comprobamos en otro pod:
+```
+kubectl exec -it web-0 -- ls /usr/share/nginx/html/test
 ```
 
-o también:
+### 2. Aumentando el escalado (Scaling Up)
 
+Para aumentar el escalado:
 ```
-kubectl apply -f pod.yaml
+kubectl scale sts web --replicas=5
 ```
-
-**Nota:** normalmente para crear un objeto en Kubernetes se usa el comando `create` de `kubectl`, pero también se puede usar `apply` que además sirve para actualizar elementos existentes.
-
-Comprobamos el despliegue del pod en el dashboard (yaml, logs y exec). También podemos hacerlo por terminal:
-
+y comprobamos como escala secuencialmente:
 ```
 watch kubectl get pods
 ```
 
-Para eliminar un pod haciendo referencia al archivo:
+### 3. Disminuyendo el escalado (Scaling Down)
 
+Para disminuir el escalado:
 ```
-kubectl delete -f pod.yaml
+kubectl scale sts web --replicas=2
 ```
-
-Para eliminar un pod haciendo nombre del pod:
-
+y comprobamos como escala secuencialmente:
 ```
-kubectl delete pod myapp-pod
-```
-
-Para eliminar un pod a la fuerza:
-
-```
-kubectl delete pod myapp-pod --force --grace-period=0
+watch kubectl get pods
 ```
 
+### 4. Eliminación no en cascada
 
+Ademas de la eliminación tradicional en cascada, también podemos eliminar el objeto principal manteniendo sus hijos. Probemos con el StatefulSet que hemos creado:
+```
+kubectl delete statefulset web --cascade=false
+```
+y comprobamos como no ha eliminado los pods:
+```
+watch kubectl get pods
+```
+eliminamos un solo pod y comprobamos de nuevo como se mantienen los demás y no se crean o reinician nuevos
+```
+kubectl delete pod web-0 && watch kubectl get pods
+```
+ya podemos eliminar los demás
+```
+kubectl delete pods -l app=nginx
+```
 
 Volver al [Ejercicio 05](../05%20ReplicaSets/README.md)
 
