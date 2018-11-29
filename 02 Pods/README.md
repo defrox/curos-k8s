@@ -1,6 +1,6 @@
 # Ejercicio 02
 
-En este ejercicio crearemos varios pods y veremos sus particularidades.
+En este ejercicio crearemos varios tipos de pods y veremos sus particularidades.
 
 ### 1. Crear un pod sencillo
 
