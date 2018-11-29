@@ -30,57 +30,42 @@ limpiamos
 kubectl delete pod sharevol
 ```
 
-### 1. Crear un pod con un volumen compartido persistente
+### 2. Crear un pod con un volumen compartido persistente
 
 Los volumenes creados con `hostPath` se crean en el propio sistema de archivos del nodo y son persistentes. Probemos a desplegar un pod con un volumen de este tipo: 
 ```
 kubectl create -f https://raw.githubusercontent.com/defrox/curso-k8s-orange/master/07%20Volumes/pod-hp.yaml
 ```
-y comprobamos como los dos contenedores del pod comparten el mismo volumen, entrando en el contenedor `c1`
+Si comprobamos el estado veremos que falla a causa de no encontrar un directorio en el host
 ```
-kubectl exec -it sharevol -c c1 bash
+kubectl describe pod test-pd
 ```
-una vez dentro, comprobamos que el directorio `/tmp/xchange` esta vacío y creamos un archivo
+Pero si creamos el directorio
 ```
-ls /tmp/xchange
-touch /tmp/xchange/iwashere.txt
-ls /tmp/xchange
-exit
+mkdir /root/data
 ```
-y comprobamos en el contenedor `c2`:
+y volvemos a comprobar pasados unos segundos, veremos que ya ha conseguido montar el volumen
 ```
-kubectl exec -it sharevol -c c2 -- ls /tmp/data
+kubectl describe pod test-pd
 ```
-
-
-
-**Nota:** normalmente para crear un objeto en Kubernetes se usa el comando `create` de `kubectl`, pero también se puede usar `apply` que además sirve para actualizar elementos existentes.
-
-Comprobamos el despliegue del pod en el dashboard (yaml, logs y exec). También podemos hacerlo por terminal:
-
+Para comprobar la persistencia, accedemos al pod y creamos un archivo
 ```
-watch kubectl get pods
+kubectl exec -it test-pd -- touch /test-pd/iwashere.txt
 ```
-
-Para eliminar un pod haciendo referencia al archivo:
-
+y comprobamos en el host:
 ```
-kubectl delete -f pod.yaml
+ls /root/data
+```
+ahora borramos el pod
+```
+kubectl delete pod test-pd
+```
+y comprobamos de nuevo en el host:
+```
+ls /root/data
 ```
 
-Para eliminar un pod haciendo nombre del pod:
-
-```
-kubectl delete pod myapp-pod
-```
-
-Para eliminar un pod a la fuerza:
-
-```
-kubectl delete pod myapp-pod --force --grace-period=0
-```
-
-
+Mas información sobre [volumenes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) y [aprovisionamiento dinámico de volumenes](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/)
 
 Volver al [Ejercicio 06](../06%20StatefulSets/README.md)
 
