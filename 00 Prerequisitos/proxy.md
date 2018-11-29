@@ -1,5 +1,5 @@
 ## Configurar proxy en la VM
-**NOTA:** No configurar el proxy, por el momento no lo ha funcionado.
+**NOTA:** No configurar el proxy, por el momento no hemos logrado que funcione.
 
 Para establecer la configuración del proxy de la red orange en la VM, hay que editar el archivo **~/.profile** y añadir al final
 ```
