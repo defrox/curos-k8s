@@ -2,16 +2,12 @@
 Este repositorio contiene los archivos de los ejercicios del curso de Kubernetes impartido en Orange.
 
 ## Requisitos
-Tener instalado VirtualBox y haber descargado la imagen de la máquina virtual preparada para este taller
-(añadir link al drive)
+
+Tener instalado VirtualBox y haber descargado la [imagen](https://drive.google.com/open?id=1WNDk3JsVo0FjA0vYPO6EF1FhCeNcOG8Z) de la máquina virtual preparada para esta formación, o un navegador con conexion a internet (se usará un terminal web).
 
 ## Intro
 ¿Como c*****s se pronuncia kubernetes?
 
 [youtube](https://www.youtube.com/watch?v=uMA7qqXIXBk)
-
-https://www.youtube.com/watch?v=R-3dfURb2hA
-
-https://www.youtube.com/watch?v=R-3dfURb2hA
 
 
