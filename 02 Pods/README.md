@@ -1,4 +1,4 @@
-# Ejercicio 1
+# Ejercicio 02
 
 En este ejercicio crearemos varios pods y veremos sus particularidades.
 
@@ -317,3 +317,7 @@ Veremos que una vez los servicios se despliegan, el pod consigue levantarse corr
 NAME        READY     STATUS    RESTARTS   AGE
 myapp-pod   1/1       Running   0          9m
 ```
+
+Volver al [Ejercicio 01](../01%20Cluster/README.md)
+
+Continuar al [Ejercicio 03](../03%20Services/README.md)

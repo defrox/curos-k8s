@@ -1,4 +1,4 @@
-# Ejercicio 1
+# Ejercicio 01
 
 Si no hemos instalado minikube en local, podemos pasar al [punto 4](#4-lanzar-minikube-desde-la-nube)
 
@@ -173,3 +173,7 @@ Opcionalmente, podemos borrar la VM de minikube:
 minikube delete
 ```
 **Nota:** esto eliminará todo los objetos desplegados y lo que hayamos hecho en el clúster de minikube, ya que no es un despliegue persistente.
+
+Volver al [Indice](../README.md)
+
+Continuar al [Ejercicio 02](../02%20Pods/README.md)
