@@ -10,4 +10,12 @@ Tener instalado VirtualBox y haber descargado la [imagen](https://drive.google.c
 
 [youtube](https://www.youtube.com/watch?v=uMA7qqXIXBk)
 
+## ¿Qué es Kubernetes?
+[Presentación](https://docs.google.com/presentation/d/1kLOrx8VPVhGhKnztBepQYOU2Ztx8vAIph2ChBaYQlIo/edit?usp=sharing)
+
+## Cluster de Kubernetes
+[Ejercicio 01](01%20Cluster/README.md)
+
+
+
 
