@@ -16,6 +16,7 @@ Tener instalado VirtualBox y haber descargado la [imagen](https://drive.google.c
 ## Cluster de Kubernetes
 [Ejercicio 01](01%20Cluster/README.md)
 
-
+## Pods
+[Ejercicio 02](02%20Pods/README.md)
 
 
