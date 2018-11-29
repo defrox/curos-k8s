@@ -1,6 +1,6 @@
 # Ejercicio 07
 
-En este ejercicio crearemos varios pods y veremos sus particularidades.
+En este ejercicio crearemos varios tipos de volúmenes y veremos sus particularidades. Dadas las limitaciones es conveniente usar el entorno cloud.
 
 **Solo para entorno cloud (terminal web):** recargar la ventana del terminal para evitar que expire.
 
@@ -9,16 +9,17 @@ En este ejercicio crearemos varios pods y veremos sus particularidades.
 Con el editor de texto o directamente desde el terminal, crear un archivo `pod.yaml` con el siguiente contenido:
 ```
 apiVersion: v1
-kind: Pod
+kind: PersistentVolume
 metadata:
-  name: myapp-pod
-  labels:
-    app: myapp
+  name: pv0003
 spec:
-  containers:
-    - name: myapp-container
-      image: busybox
-      command: ['sh', '-c', 'echo All you need is Love! && sleep 3600']
+  capacity:
+    storage: 100Mi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: standard
 ```
 Ahora desplegamos el pod que acabamos de crear:
 
