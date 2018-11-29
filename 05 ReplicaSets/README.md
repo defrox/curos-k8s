@@ -1,61 +1,130 @@
 # Ejercicio 05
 
-En este ejercicio crearemos varios pods y veremos sus particularidades.
+En este ejercicio crearemos varios replicasets y veremos sus particularidades.
 
-### 1. Crear un pod sencillo
+### 1. Crear un replicaset
 
-Con el editor de texto o directamente desde el terminal, crear un archivo `pod.yaml` con el siguiente contenido:
+Con el editor de texto o directamente desde el terminal, crear un archivo `replicaset.yaml` con el siguiente contenido:
 ```
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: ReplicaSet
 metadata:
-  name: myapp-pod
+  name: frontend
   labels:
-    app: myapp
+    app: guestbook
+    tier: frontend
 spec:
-  containers:
-    - name: myapp-container
-      image: busybox
-      command: ['sh', '-c', 'echo All you need is Love! && sleep 3600']
+  # modificar el número de replicas a elección
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: frontend
+    matchExpressions:
+      - {key: tier, operator: In, values: [frontend]}
+  template:
+    metadata:
+      labels:
+        app: guestbook
+        tier: frontend
+    spec:
+      containers:
+      - name: php-redis
+        image: gcr.io/google_samples/gb-frontend:v3
+        resources:
+          requests:
+            cpu: 10m
+            memory: 10Mi
+        env:
+        - name: GET_HOSTS_FROM
+          value: dns
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+            port: 80
 ```
-Ahora desplegamos el pod que acabamos de crear:
-
+y un servicio `service.yaml`
 ```
-kubectl create -f pod.yaml
+kind: Service
+apiVersion: v1
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: guestbook # RS al que enrutará este servicio
+  type: LoadBalancer
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
 ```
-
-o también:
-
+desplegamos lo que acabamos de crear:
 ```
-kubectl apply -f pod.yaml
+kubectl create -f replicaset.yaml -f service.yaml
 ```
-
-**Nota:** normalmente para crear un objeto en Kubernetes se usa el comando `create` de `kubectl`, pero también se puede usar `apply` que además sirve para actualizar elementos existentes.
-
-Comprobamos el despliegue del pod en el dashboard (yaml, logs y exec). También podemos hacerlo por terminal:
-
+Si lo deseamos podemos comprobar que se puede acceder desde internet
 ```
-watch kubectl get pods
+minikube service frontend-service
 ```
+**Solo para entorno cloud (terminal web):** En la parte superior del terminal web, pulsar sobre el signo mas y luego pulsar en "Select port to view on Host 1". Escribir el segundo puerto después del 80, y luego pulsar "Display Port". Esto abrirá una ventana del navegador con nuestro despliegue.
 
-Para eliminar un pod haciendo referencia al archivo:
+### 2. Comprobar el uso de recursos
 
+Para comprobar el uso de recursos de nuestros objetos desplegados, ejecutamos:
 ```
-kubectl delete -f pod.yaml
+kubectl describe nodes
 ```
+Y veremos un listado con los recursos que hemos establecido en el replicaset.
 
-Para eliminar un pod haciendo nombre del pod:
+### 3. Aumentar los recursos
 
+Si se diera el caso de que nuestros pods no tienen suficientes recursos, podríamos aumentarlos como en el siguiente YAML:
 ```
-kubectl delete pod myapp-pod
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: frontend
+  labels:
+    app: guestbook
+    tier: frontend
+spec:
+  # modificar el número de replicas a elección
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: frontend
+    matchExpressions:
+      - {key: tier, operator: In, values: [frontend]}
+  template:
+    metadata:
+      labels:
+        app: guestbook
+        tier: frontend
+    spec:
+      containers:
+      - name: php-redis
+        image: gcr.io/google_samples/gb-frontend:v3
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        env:
+        - name: GET_HOSTS_FROM
+          value: dns
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+            port: 80
 ```
-
-Para eliminar un pod a la fuerza:
-
+Y lo actualizamos
 ```
-kubectl delete pod myapp-pod --force --grace-period=0
+kubectl apply -f replicaset.yaml
 ```
-
+Comprobamos que en efecto a aumentado los recursos
+```
+kubectl describe rs frontend
+```
 
 Volver al [Ejercicio 04](../04%20Deployments/README.md)
 
