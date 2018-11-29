@@ -1,37 +1,58 @@
 # Ejercicio 07
 
-En este ejercicio crearemos varios tipos de volúmenes y veremos sus particularidades. Dadas las limitaciones es conveniente usar el entorno cloud.
+En este ejercicio crearemos varios tipos de volúmenes y veremos sus particularidades.
 
 **Solo para entorno cloud (terminal web):** recargar la ventana del terminal para evitar que expire.
 
-### 1. Crear un pod sencillo
+### 1. Crear un pod con un volumen compartido efímero
 
-Con el editor de texto o directamente desde el terminal, crear un archivo `pod.yaml` con el siguiente contenido:
+Los volumenes creados con `emptyDir: {}` se crean en el propio sistema de archivos del nodo y solo viven mientras vive el pod (pero sobrevive a los reinicios). Probemos a desplegar un pod con un volumen de este tipo: 
 ```
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: pv0003
-spec:
-  capacity:
-    storage: 100Mi
-  volumeMode: Filesystem
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Recycle
-  storageClassName: standard
+kubectl create -f https://raw.githubusercontent.com/defrox/curso-k8s-orange/master/07%20Volumes/pod.yaml
 ```
-Ahora desplegamos el pod que acabamos de crear:
+y comprobamos como los dos contenedores del pod comparten el mismo volumen, entrando en el contenedor `c1`
+```
+kubectl exec -it sharevol -c c1 bash
+```
+una vez dentro, comprobamos que el directorio `/tmp/xchange` esta vacío y creamos un archivo
+```
+ls /tmp/xchange
+touch /tmp/xchange/iwashere.txt
+ls /tmp/xchange
+exit
+```
+y comprobamos en el contenedor `c2`:
+```
+kubectl exec -it sharevol -c c2 -- ls /tmp/data
+```
+limpiamos
+```
+kubectl delete pod sharevol
+```
 
+### 1. Crear un pod con un volumen compartido persistente
+
+Los volumenes creados con `hostPath` se crean en el propio sistema de archivos del nodo y son persistentes. Probemos a desplegar un pod con un volumen de este tipo: 
 ```
-kubectl create -f pod.yaml
+kubectl create -f https://raw.githubusercontent.com/defrox/curso-k8s-orange/master/07%20Volumes/pod-hp.yaml
+```
+y comprobamos como los dos contenedores del pod comparten el mismo volumen, entrando en el contenedor `c1`
+```
+kubectl exec -it sharevol -c c1 bash
+```
+una vez dentro, comprobamos que el directorio `/tmp/xchange` esta vacío y creamos un archivo
+```
+ls /tmp/xchange
+touch /tmp/xchange/iwashere.txt
+ls /tmp/xchange
+exit
+```
+y comprobamos en el contenedor `c2`:
+```
+kubectl exec -it sharevol -c c2 -- ls /tmp/data
 ```
 
-o también:
 
-```
-kubectl apply -f pod.yaml
-```
 
 **Nota:** normalmente para crear un objeto en Kubernetes se usa el comando `create` de `kubectl`, pero también se puede usar `apply` que además sirve para actualizar elementos existentes.
 
