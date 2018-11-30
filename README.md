@@ -5,7 +5,7 @@ Este repositorio contiene los archivos de los ejercicios del curso de Kubernetes
 
 Tener instalado VirtualBox y haber descargado la [imagen](https://drive.google.com/open?id=1WNDk3JsVo0FjA0vYPO6EF1FhCeNcOG8Z) de la máquina virtual preparada para esta formación, o un navegador con conexion a internet (se usará un terminal web).
 
-[Prerequisitos 00](00%20Prerequisitos/README.md)
+[Prerequisitos](00%20Prerequisitos/README.md)
 
 ## ¿Como c*****s se pronuncia kubernetes?
 [youtube](https://www.youtube.com/watch?v=uMA7qqXIXBk)
@@ -38,4 +38,7 @@ Tener instalado VirtualBox y haber descargado la [imagen](https://drive.google.c
 [Ejercicio 08](08%20Secrets%20y%20ConfigMaps/README.md)
 
 ## Extras
-[Extras 99](99%20Extras/README.md)
+[Extras](99%20Extras/README.md)
+
+---
+creado por [Christian Axel Schmidt Dick](http://defrox.com)
