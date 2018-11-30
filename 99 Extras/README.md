@@ -15,7 +15,7 @@
     - [Play with Kubernetes](https://labs.play-with-k8s.com/)
     - [Katacoda](https://www.katacoda.com)
     
-* Otra forma para realizar pruebas y no gastar dinero es crear una cuenta en AWS y podremos disfrutar de las ventajas de la [capa grauita]([Capa gratuita de AWS](https://aws.amazon.com/es/free/?sc_channel=PS&sc_campaign=acquisition_ES&sc_publisher=google&sc_medium=ACQ-P%7CPS-GO%7CBrand%7CDesktop%7CSU%7CCore%7CCore%7CES%7CEN%7CText&sc_content=Brand_Free_e&sc_detail=aws%20free%20tier&sc_category=Core&sc_segment=293642817776&sc_matchtype=e&sc_country=ES&s_kwcid=AL!4422!3!293642817776!e!!g!!aws%20free%20tier&ef_id=Cj0KCQiAuf7fBRD7ARIsACqb8w4ZlS6ovbO9AkBP4QfK3g8jW7tzCaTfZuon4WrtVj7aVrwP48z6I3QaAptoEALw_wcB:G:s)), además los 12 primeros meses hay mas servicios gratuitos. Además disponemos de la herramienta [kops](https://github.com/kubernetes/kops) que nos permitirá desplegar un clúster en AWS de forma sencilla.
+* Otra forma para realizar pruebas y no gastar dinero es crear una cuenta en AWS y podremos disfrutar de las ventajas de la [Capa gratuita de AWS](https://aws.amazon.com/es/free/?sc_channel=PS&sc_campaign=acquisition_ES&sc_publisher=google&sc_medium=ACQ-P%7CPS-GO%7CBrand%7CDesktop%7CSU%7CCore%7CCore%7CES%7CEN%7CText&sc_content=Brand_Free_e&sc_detail=aws%20free%20tier&sc_category=Core&sc_segment=293642817776&sc_matchtype=e&sc_country=ES&s_kwcid=AL!4422!3!293642817776!e!!g!!aws%20free%20tier&ef_id=Cj0KCQiAuf7fBRD7ARIsACqb8w4ZlS6ovbO9AkBP4QfK3g8jW7tzCaTfZuon4WrtVj7aVrwP48z6I3QaAptoEALw_wcB:G:s), además los 12 primeros meses hay mas servicios gratuitos. Además disponemos de la herramienta [kops](https://github.com/kubernetes/kops) que nos permitirá desplegar un clúster en AWS de forma sencilla.
 
 ---
 
