@@ -174,6 +174,8 @@ minikube delete
 ```
 **Nota:** esto eliminará todo los objetos desplegados y lo que hayamos hecho en el clúster de minikube, ya que no es un despliegue persistente.
 
+---
+
 Volver al [Indice](../README.md)
 
 Continuar al [Ejercicio 02](../02%20Pods/README.md)

@@ -127,6 +127,7 @@ Comprobamos que en efecto a aumentado los recursos
 ```
 kubectl describe rs frontend
 ```
+---
 
 Volver al [Ejercicio 04](../04%20Deployments/README.md)
 
