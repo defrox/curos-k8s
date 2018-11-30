@@ -123,6 +123,9 @@ Para eliminar el deployment debemos ejecutar:
 kubectl delete deployment nginx-deployment
 ```
 
+---
+
+
 Volver al [Ejercicio 03](../03%20Services/README.md)
 
 Continuar al [Ejercicio 05](../05%20ReplicaSets/README.md)

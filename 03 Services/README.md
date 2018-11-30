@@ -181,6 +181,9 @@ Ya podemos limpiar nuestro cluster:
 kubectl delete -f service.yaml -f pod.yaml
 ```
 
+---
+
+
 Volver al [Ejercicio 02](../02%20Pods/README.md)
 
 Continuar al [Ejercicio 04](../04%20Deployments/README.md)

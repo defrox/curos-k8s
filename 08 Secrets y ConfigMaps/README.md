@@ -1,12 +1,38 @@
 # Ejercicio 08
 
-En este ejercicio crearemos varios pods y veremos sus particularidades.
+En este ejercicio crearemos varios configmpas y secrets y veremos sus particularidades.
 
 **Solo para entorno cloud (terminal web):** recargar la ventana del terminal para evitar que expire.
 
-### 1. Crear un pod sencillo
+### 1. Crear un configmap y un pod que acceda a él
 
-Con el editor de texto o directamente desde el terminal, crear un archivo `pod.yaml` con el siguiente contenido:
+Con el editor de texto o directamente desde el terminal, creamos un archivo de texto:
+```
+echo "All you need is Love!" > slogan.txt
+```
+y un archivo `configmap.yaml` con ese archivo de texto:
+```
+kubectl create configmap orange --from-file=slogan.txt
+```
+Comprobamos lo que hemos creado
+```
+kubectl describe configmap orange
+```
+```
+Name:           orange
+Namespace:      default
+Labels:         <none>
+Annotations:    <none>
+
+Data
+====
+slogan.txt:
+----
+All you need is Love!
+
+Events: <none>
+```
+Ya podemos crear un `pod.yaml` con el siguiente contenido:
 ```
 apiVersion: v1
 kind: Pod
@@ -18,46 +44,104 @@ spec:
   containers:
     - name: myapp-container
       image: busybox
-      command: ['sh', '-c', 'echo All you need is Love! && sleep 3600']
+      command: ['sh', '-c', 'echo I am ready && sleep 3600']
+      env:
+        # Define the environment variable
+        - name: ORANGE
+          valueFrom:
+            configMapKeyRef:
+              name: orange
+              key: slogan.txt
 ```
-Ahora desplegamos el pod que acabamos de crear:
-
+desplegamos el pod que acabamos de crear:
 ```
 kubectl create -f pod.yaml
 ```
-
-o también:
-
+y comprobamos que la variable de entorno creada a partir del configmap existe en el pod
 ```
-kubectl apply -f pod.yaml
+kubectl exec -it myapp-pod env | grep ORANGE
 ```
-
-**Nota:** normalmente para crear un objeto en Kubernetes se usa el comando `create` de `kubectl`, pero también se puede usar `apply` que además sirve para actualizar elementos existentes.
-
-Comprobamos el despliegue del pod en el dashboard (yaml, logs y exec). También podemos hacerlo por terminal:
-
 ```
-watch kubectl get pods
+ORANGE=All you need is Love!
 ```
-
-Para eliminar un pod haciendo referencia al archivo:
-
+Ya podemos eliminar el pod:
 ```
 kubectl delete -f pod.yaml
 ```
 
-Para eliminar un pod haciendo nombre del pod:
+### 2. Crear un secret y un pod que acceda a él
 
+Con el editor de texto o directamente desde el terminal, creamos un archivo de texto:
 ```
-kubectl delete pod myapp-pod
+echo "this is my new password" > password.txt
+```
+y un archivo `secret.yaml` con ese archivo de texto:
+```
+kubectl create secret generic newpass --from-file=password.txt
+```
+Comprobamos lo que hemos creado
+```
+kubectl describe secret newpass
+```
+```
+Name:           newpass
+Namespace:      default
+Labels:         <none>
+Annotations:    <none>
+
+Type:   Opaque
+
+Data
+====
+password.txt:  24 bytes
+```
+Si visualizamos el secret veremos que el valor esta encriptado en base64
+```
+kubectl get secret newpass -o yaml
+```
+Ya podemos crear un `pod.yaml` con el siguiente contenido:
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels:
+    app: myapp
+spec:
+  containers:
+  - name: myapp-container
+    image: centos:7
+    command: ['sh', '-c', 'echo I am ready && sleep 3600']
+    volumeMounts:
+      - name: passvol
+        mountPath: "/tmp/newpass"
+        readOnly: true
+  volumes:
+  - name: passvol
+    secret:
+        secretName: newpass
+```
+desplegamos el pod que acabamos de crear:
+```
+kubectl create -f pod.yaml
+```
+comprobamos que ha arrancado correctamente
+```
+kubectl logs myapp-pod
+```
+y comprobamos que el archivo creado a partir del secret existe en el pod
+```
+kubectl exec -it myapp-pod cat /tmp/newpass/password.txt
+```
+```
+this is my new password
+```
+Ya podemos eliminar el pod:
+```
+kubectl delete -f pod.yaml
 ```
 
-Para eliminar un pod a la fuerza:
-
-```
-kubectl delete pod myapp-pod --force --grace-period=0
-```
-
+---
 
 Volver al [Ejercicio 07](../07%20Volumes/README.md)
 

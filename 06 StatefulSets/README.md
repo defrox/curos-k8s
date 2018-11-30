@@ -124,6 +124,9 @@ ya podemos eliminar los demás
 kubectl delete pods -l app=nginx
 ```
 
+---
+
+
 Volver al [Ejercicio 05](../05%20ReplicaSets/README.md)
 
 Continuar al [Ejercicio 07](../07%20Volumes/README.md)

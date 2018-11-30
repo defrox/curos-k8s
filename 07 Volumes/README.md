@@ -65,7 +65,13 @@ y comprobamos de nuevo en el host:
 ls /root/data
 ```
 
+---
+
+
 Mas información sobre [volumenes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) y [aprovisionamiento dinámico de volumenes](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/)
+
+---
+
 
 Volver al [Ejercicio 06](../06%20StatefulSets/README.md)
 

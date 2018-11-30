@@ -57,4 +57,6 @@ Para comprobar si hemos instalado minikube correctamente, ejecutar:
 
 `minikube version`
 
+---
+
 Ir al [Indice](../README.md)
