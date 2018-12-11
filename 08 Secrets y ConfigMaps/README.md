@@ -1,6 +1,6 @@
 # Ejercicio 08
 
-En este ejercicio crearemos varios configmpas y secrets y veremos sus particularidades.
+En este ejercicio crearemos varios ConfigMaps y Secrets y veremos sus particularidades.
 
 **Solo para entorno cloud (terminal web):** recargar la ventana del terminal para evitar que expire.
 
