@@ -18,66 +18,80 @@ Tener instalado VirtualBox y haber descargado la [imagen](https://drive.google.c
 
 ## Cluster
 [Ejercicio 01](01%20Cluster/README.md)
+
 Abrir en [katacoda](https://www.katacoda.com/defrox/scenarios/01-cluster)
 
 ## Pods
 [Ejercicio 02](02%20Pods/README.md)
+
 Abrir en [katacoda](https://www.katacoda.com/defrox/scenarios/02-pods)
 
 ## Services
 [Ejercicio 03](03%20Services/README.md)
+
 Abrir en [katacoda](https://www.katacoda.com/defrox/scenarios/03-services)
 
 ## Deployments
 [Ejercicio 04](04%20Deployments/README.md)
+
 Abrir en [katacoda](https://www.katacoda.com/defrox/scenarios/04-deployments)
 
 ## ReplicaSets
 [Ejercicio 05](05%20ReplicaSets/README.md)
+
 Abrir en [katacoda](https://www.katacoda.com/defrox/scenarios/05-replicasets)
 
 ## StatefulSets
 [Ejercicio 06](06%20StatefulSets/README.md)
+
 Abrir en [katacoda](https://www.katacoda.com/defrox/scenarios/06-statefulsets)
 
 ## Volumes
 [Ejercicio 07](07%20Volumes/README.md)
+
 Abrir en [katacoda](https://www.katacoda.com/defrox/scenarios/07-volumes)
 
 ## Secrets y ConfigMaps
 [Ejercicio 08](08%20Secrets%20y%20ConfigMaps/README.md)
+
 Abrir en [katacoda](https://www.katacoda.com/defrox/scenarios/08-secrets%20y%20configmaps)
 
 ## Crear un cluster de kubernetes con kubeadm
-[Ejercicio 09]
+[Ejercicio 09]()
+
 Abrir en [katacoda](https://www.katacoda.com/defrox/scenarios/09-kubeadm)
 
 ## Gestor de Paquetes Helm
-[Ejercicio 10]
+[Ejercicio 10]()
+
 Abrir en [katacoda](https://www.katacoda.com/defrox/scenarios/10-helm)
 
 ## Primeros pasos con Kubeless
-[Ejercicio 11]
+[Ejercicio 11]()
+
 Abrir en [katacoda](https://www.katacoda.com/defrox/scenarios/11-kubeless)
 
 ## Enrutamiento con Ingress
-[Ejercicio 12]
+[Ejercicio 12]()
+
 Abrir en [katacoda](https://www.katacoda.com/defrox/scenarios/12-ingress)
 
 ## Monitorización del Clúster
-[Ejercicio 13]
+[Ejercicio 13]()
+
 Abrir en [katacoda](https://www.katacoda.com/defrox/scenarios/13-monitorizacion)
 
 ## Despliegue de Kafka
-[Ejercicio 14]
+[Ejercicio 14]()
+
 Abrir en [katacoda](https://www.katacoda.com/defrox/scenarios/14-kafka)
 
 ## Despliegue de Kubeflow
-[Ejercicio 15]
+[Ejercicio 15]()
+
 Abrir en [katacoda](https://www.katacoda.com/defrox/scenarios/15-kubeflow)
 
 ## Area Recreativa de Kubernetes
-[Ejercicio 15]
 Abrir en [katacoda](https://www.katacoda.com/defrox/scenarios/98-playground)
 
 ## Extras
