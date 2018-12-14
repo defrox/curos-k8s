@@ -98,4 +98,4 @@ Abrir en [katacoda](https://www.katacoda.com/defrox/scenarios/98-playground)
 [Extras](99%20Extras/README.md)
 
 ---
-creado por [Christian Axel Schmidt Dick](http://defrox.com)
+creado por [Christian Axel Schmidt Dick](http://defrox.com) aka Mr. Kubernetes
